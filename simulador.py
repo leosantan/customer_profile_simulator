@@ -180,12 +180,6 @@ scaler_robust_entrada = data['scaler_robust_entrada']
 scaler_robust_saida = data['scaler_robust_saida']
 
 
-# Carregar modelo e scaler para o cpr
-data = joblib.load('modelo_cpr1.pkl')
-modelo1 = data['model']
-scaler_robust_saida1 = data['scaler']
-
-
 # Interface Streamlit
 st.title("Simulador do Perfil dos Clientes")
 st.write("Preencha os dados do cliente para prever a qual cluster ele pertence.")
