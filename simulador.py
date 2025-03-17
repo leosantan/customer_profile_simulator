@@ -232,6 +232,13 @@ cliente = {
     }
 df_cliente = pd.DataFrame([cliente])
 
+mapeamento_porte = {
+    'Microempresa': 'MICRO EMPRESA',
+    'Empresa de pequeno porte': 'EMPRESA DE PEQUENO PORTE',
+    'Empresa de médio e grande porte': 'EMPRESA DE MEDIO E GRANDE PORTE'
+}
+df_cliente['PORTE'] = df_cliente['PORTE'].apply(lambda x: mapeamento_porte.get(x, None))
+
 df_cliente['PORTE_VALOR'] = df_cliente['PORTE'].apply(lambda x: 
     '1. De 0.0 a 360 Mil' if x == 'MICRO EMPRESA' else 
     '2. De 360 Mil a 4.8 Milhoes' if x == 'EMPRESA DE PEQUENO PORTE' else 
@@ -248,15 +255,7 @@ mapeamento_pop_porte = {
     '4. De 300 mil a 1 milhão de habitantes': '4. De 300 a 1 Milhao de Habitantes',
     '5. Acima de 1 milhão de habitantes': '5. Acima de 1 Milhao de Habitantes'
 }
-df_cliente['pop_porte'] = df_cliente['pop_porte'].apply(lambda x: mapeamento_pop_porte.get(x, None))
-
-mapeamento_porte = {
-    'Microempresa': 'MICRO EMPRESA',
-    'Empresa de pequeno porte': 'EMPRESA DE PEQUENO PORTE',
-    'Empresa de médio e grande porte': 'EMPRESA DE MEDIO E GRANDE PORTE'
-}
-df_cliente['PORTE'] = df_cliente['PORTE'].apply(lambda x: mapeamento_porte.get(x, None))
-
+df_cliente['POP_PORTE'] = df_cliente['POP_PORTE'].apply(lambda x: mapeamento_pop_porte.get(x, None))
 
 condicoes = [
     df_cliente["VALOR_MEDIO_SAIDA"] < 50000,
