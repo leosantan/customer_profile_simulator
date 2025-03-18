@@ -276,7 +276,7 @@ if st.button('Fazer previsão'):
         resultado = prever_cluster(df_cliente, kmeans) 
         resultado1 = prever_cpr(df_cliente, modelo, scaler_robust_entrada, scaler_robust_saida) 
 
-        st.write(f"O cliente pertence ao Cluster {resultado['cluster'].iloc[0]}.")
+        st.write(f"Cliente de Perfil {resultado['cluster'].iloc[0]}.")
 
         valor_previsto = resultado1['VALOR_CPR_SAIDA'].iloc[0]
         valor_medio_saida = df_cliente['VALOR_MEDIO_SAIDA'].iloc[0]
