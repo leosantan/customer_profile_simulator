@@ -284,10 +284,13 @@ if st.button('Fazer previsão'):
         elif ((tempo_abertura == '3. De 16 a 25 anos' or tempo_abertura == '4. Acima de 26 anos') and (port_check == '0. De 1 a 4 Ckts')):
               resultado.loc[0, 'cluster'] = 3
         elif ((tempo_abertura == '1. Ate 5 anos' or tempo_abertura == '2. De 5 a 15 anos') and (port_check == '0. De 1 a 4 Ckts')
-              and (100000 < valor_saida < 1000000) and (pop_porte == '0. Até 20 mil habitantes')):
+              and (100000 <= valor_saida < 1000000) and (pop_porte == '0. Até 20 mil habitantes')):
               resultado.loc[0, 'cluster'] = 5
         elif ((tempo_abertura == '1. Ate 5 anos' or tempo_abertura == '2. De 5 a 15 anos') and (port_check == '0. De 1 a 4 Ckts')
-              and (100000 < valor_saida < 1000000)):
+              and (100000 <= valor_saida < 1000000) and (pop_porte == '5. Acima de 1 milhão de habitantes')):
+              resultado.loc[0, 'cluster'] = 6
+        elif ((tempo_abertura == '1. Ate 5 anos' or tempo_abertura == '2. De 5 a 15 anos') and (port_check == '0. De 1 a 4 Ckts')
+              and (100000 <= valor_saida < 1000000)):
               resultado.loc[0, 'cluster'] = 4
                
         st.write(f"Cliente de Perfil {resultado['cluster'].iloc[0]}.")
