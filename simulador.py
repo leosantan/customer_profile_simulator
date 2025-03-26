@@ -276,8 +276,12 @@ if st.button('Fazer previsão'):
         resultado = prever_cluster(df_cliente, kmeans) 
         resultado1 = prever_cpr(df_cliente, modelo, scaler_robust_entrada, scaler_robust_saida) 
 
+        if ((tempo_abertura == '1. Ate 5 anos' or tempo_abertura == '2. De 5 a 15 anos') and (valor_saida < 50000)):
+            resultado.loc[0, 'cluster'] = 2
+        
         st.write(f"Cliente de Perfil {resultado['cluster'].iloc[0]}.")
-
+        
+        
         valor_previsto = resultado1['VALOR_CPR_SAIDA'].iloc[0]
         valor_medio_saida = df_cliente['VALOR_MEDIO_SAIDA'].iloc[0]
 
